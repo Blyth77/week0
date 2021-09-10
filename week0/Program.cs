@@ -7,17 +7,28 @@ namespace week0
         public static void Main(string[] args)
         {
             Console.WriteLine("Please type a number and press 'Enter'!");
-            var year = Convert.ToInt32(Console.ReadLine());
+            var year = 0; 
+            try {
+                year = Convert.ToInt32(Console.ReadLine());
+            } catch (Exception e) {
+                Console.WriteLine("Not a valid year, sorry! Please try again!", e);
+            }
             
             if(year != 0) {
-                bool statement = IsLeapYear(year);
+                if(year >= 1582) {
+                    bool statement = IsLeapYear(year);
 
-                if(statement) { 
-                    Console.WriteLine("Yay!");
+                    if(statement) { 
+                        Console.WriteLine("Yay!");
+                    }
+                    else { 
+                        Console.WriteLine("Nay!");
+                    }
                 }
-                else { 
-                    Console.WriteLine("Nay!");
+                else {                 
+                    Console.WriteLine("Not a valid year, it is to low! Please try again!");
                 }
+
             }
         }
 
@@ -30,13 +41,9 @@ namespace week0
                 else if (year % 400 == 0) {
                     return true;
                 } 
-                else {
-                    return false;
-                }
+                else return false;
             }
-            else {
-                return false;
-            }
+            else return false;
         }
     }
 }

@@ -62,7 +62,7 @@ namespace week0.Tests
             Console.SetOut(writer);
             
             // Act 
-            Console.SetIn(new StringReader("8"));
+            Console.SetIn(new StringReader("1600"));
             Program.Main(new string[0]);
             writer.Flush();
 
@@ -79,13 +79,47 @@ namespace week0.Tests
             Console.SetOut(writer);
             
             // Act 
-            Console.SetIn(new StringReader("9"));
+            Console.SetIn(new StringReader("1999"));
             Program.Main(new string[0]);
             writer.Flush();
 
             // Assert
             var output = writer.GetStringBuilder().ToString().Split("\n");
             Assert.Equal("Nay!", output[1]);
+        }
+
+        [Fact]
+        public void Main_prints_Not_Valid_Year()
+        {
+            // Arrange 
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+            
+            // Act 
+            Console.SetIn(new StringReader("hey"));
+            Program.Main(new string[0]);
+            writer.Flush();
+
+            // Assert
+            var output = writer.GetStringBuilder().ToString().Split("\n");
+            Assert.Equal("Not a valid year, sorry! Please try again!", output[1]);
+        }
+
+        [Fact]
+        public void Main_Input_To_Low_Year()
+        {
+            // Arrange 
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+            
+            // Act 
+            Console.SetIn(new StringReader("1581"));
+            Program.Main(new string[0]);
+            writer.Flush();
+
+            // Assert
+            var output = writer.GetStringBuilder().ToString().Split("\n");
+            Assert.Equal("Not a valid year, it is to low! Please try again!", output[1]);
         }
     }
 }
