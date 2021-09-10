@@ -37,5 +37,55 @@ namespace week0.Tests
 
             Assert.True(is_div_400); 
         }
+
+        [Fact]
+        public void Main_prints_Greeting()
+        {
+            // Arrange 
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+            
+            // Act 
+            Program.Main(new string[0]);
+
+            // Assert
+            var output = writer.GetStringBuilder().ToString().Trim();
+            Assert.Equal("Please type a number and press 'Enter'!", output);
+        
+        }
+
+        [Fact]
+        public void Main_prints_Yay()
+        {
+            // Arrange 
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+            
+            // Act 
+            Console.SetIn(new StringReader("8"));
+            Program.Main(new string[0]);
+            writer.Flush();
+
+            // Assert
+            var output = writer.GetStringBuilder().ToString().Split("\n");
+            Assert.Equal("Yay!", output[1]);
+        }
+
+        [Fact]
+        public void Main_prints_Nay()
+        {
+            // Arrange 
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+            
+            // Act 
+            Console.SetIn(new StringReader("9"));
+            Program.Main(new string[0]);
+            writer.Flush();
+
+            // Assert
+            var output = writer.GetStringBuilder().ToString().Split("\n");
+            Assert.Equal("Nay!", output[1]);
+        }
     }
 }

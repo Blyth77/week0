@@ -6,7 +6,19 @@ namespace week0
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Please type a number and press 'Enter'!");
+            var year = Convert.ToInt32(Console.ReadLine());
+            
+            if(year != 0) {
+                bool statement = IsLeapYear(year);
+
+                if(statement) { 
+                    Console.WriteLine("Yay!");
+                }
+                else { 
+                    Console.WriteLine("Nay!");
+                }
+            }
         }
 
         public static bool IsLeapYear(int year) 
